@@ -181,16 +181,19 @@ public class Main {
     }
 
     private static void viewInsertionHistory() {
-        if (historyCount == 0) {
-            System.out.println("No history available.");
-            return;
+        boolean hasInsertion = false;
+        System.out.println("Insert Product History:");
+        for (int i = 0, count = 1; i < historyCount; i++) {
+            if (history[i].toLowerCase().contains("inserted")) {
+                System.out.println(count++ + ". " + history[i]);
+                hasInsertion = true;
+            }
         }
-
-        System.out.println("Operation History:");
-        for (int i = 0; i < historyCount; i++) {
-            System.out.println((i + 1) + ". " + history[i]);
+        if (!hasInsertion) {
+            System.out.println("No insertions found in history.");
         }
     }
+
 
     private static boolean isValidPosition(int stockNum, int catalogNum) {
         if (stockNum < 0 || stockNum >= stockCount) {
